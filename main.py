@@ -51,7 +51,12 @@ def initial():
     text, captions = get_stuff(pdf_path)
  
     os.remove(pdf_path)
-    output = {'text': text, 'images': captions}
+    
+    query = "Generate top 5 questions on the given context"
+    message = [{"role":"system","content":"you are a helpful chatbot"}]
+    res = get_message(text,captions,query,message)
+    ques = res.split("\n")
+    output = {'text': text, 'images': captions,'ques':ques}
     return jsonify(output)
 
 @app.route('/message', methods=['POST'])
