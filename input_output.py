@@ -14,7 +14,7 @@ from langchain.prompts import ChatPromptTemplate
 from pypdf import PdfReader
 from sentence_transformers import SentenceTransformer
 import chromadb
-print("hello\n")
+
 # Initialize the sentence transformer model for embeddings
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -34,16 +34,16 @@ Relevant context from documents:
 user query: {query}
 """
 
-messages = [{"role": "system", "content": "You are a helpful chatbot"}]
 
-def get_stuff(text, image_text, user_query, messages):
+
+def get_message(text, image_text, user_query, messages):
     # Step 1: Add chunks of the PDF to Chroma
     add_text_chunks_to_chroma(text, image_text)
 
     # Step 2: Search for the question in the Chroma database
     documents, metadatas = search_in_chroma(user_query)
 
-    ask_ques(documents, user_query, messages)
+    return ask_ques(documents, user_query, messages)
 
     # Step 3: Print out the results with page numbers
     # for doc, meta in zip(documents[0], metadatas[0]):

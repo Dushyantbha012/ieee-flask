@@ -59,7 +59,7 @@ def extract_text_from_pdf(pdf_path):
     for page_num, page in enumerate(reader.pages, start=1):
         text = page.extract_text()  # Extract text from the page
         if text:  # Check if the page has any text
-            text_per_page.append((text, page_num))  # Append tuple (text, page number)
+            text_per_page.append([text, str(page_num)])  # Append tuple (text, page number as string)
     
     return text_per_page
 
@@ -70,4 +70,5 @@ def get_stuff(pdf_path):
     captions =[]
     for key,val in captions_dict.items():
         captions.append(key+": "+val)
+    print("type of ", type(captions))
     return text, captions
