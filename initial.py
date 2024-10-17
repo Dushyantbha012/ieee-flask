@@ -70,5 +70,4 @@ def get_stuff(pdf_path):
     captions =[]
     for key,val in captions_dict.items():
         captions.append(key+": "+val)
-    print("type of ", type(captions))
     return text, captions
