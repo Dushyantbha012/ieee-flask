@@ -73,10 +73,10 @@ def message():
     if not messages:
         return jsonify({'error': 'messages is required'}), 400
     print("messages: ",messages)
-    message = get_message(text,image_text,user_query,messages)
+    message,metadata = get_message(text,image_text,user_query,messages)
     print("messages: ",messages)
     print("output: ",message)
-    output = {'message':message}
+    output = {'message':message,'metadata':metadata}
     return jsonify(output)
 
 if __name__ == '__main__':
