@@ -43,7 +43,7 @@ def get_message(text, image_text, user_query, messages):
     # Step 2: Search for the question in the Chroma database
     documents, metadatas = search_in_chroma(user_query)
 
-    return ask_ques(documents, user_query, messages)
+    return ask_ques(documents, user_query, messages),metadatas
 
     # Step 3: Print out the results with page numbers
     # for doc, meta in zip(documents[0], metadatas[0]):
