@@ -46,21 +46,22 @@ def extract_images_from_pdf(pdf_path):
 # pdf_path = "C:\\Users\gantr\Downloads\Education_Can_t_Wait.pdf"  # Replace with your PDF file path
 
 def extract_text_from_pdf(pdf_path):
-    # Create a PdfReader object
+    """
+    Extracts text from each page of the PDF and returns it as a list of tuples,
+    where each tuple contains the text of a page and its corresponding page number.
+    """
+    text_per_page = []
+    
+    # Open the PDF file
     reader = PdfReader(pdf_path)
-
-    # Initialize a string to hold all the extracted text
-    extracted_text = ""
-
-    # Loop through each page and extract text
-    for page in reader.pages:
-        extracted_text += page.extract_text()
-
-    # Print the extracted text
-    # with open('extracted_text.txt', 'w') as text_file:
-        # text_file.write(extracted_text)
-
-    return extracted_text
+    
+    # Loop through all pages and extract text
+    for page_num, page in enumerate(reader.pages, start=1):
+        text = page.extract_text()  # Extract text from the page
+        if text:  # Check if the page has any text
+            text_per_page.append((text, page_num))  # Append tuple (text, page number)
+    
+    return text_per_page
 
 def get_stuff(pdf_path):
     
